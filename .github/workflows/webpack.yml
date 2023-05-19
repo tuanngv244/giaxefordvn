@@ -26,3 +26,12 @@ jobs:
       run: |
         npm install
         npx webpack
+
+ - name: Deploy to Hostinger
+        run: |
+          ssh-keyscan giaxefordvn.com >> ~/.ssh/known_hosts
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          rsync -rav --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" ./build/ tronglanhford@gmail.com@giaxefordvn.com:/files/public_html/
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
