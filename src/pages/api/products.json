@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Ford Ranger",
+      "content": "Ford Ranger ....",
+      "price": "3000000",
+      "image_url": "/images/gia-xe-ford-vn-1.avif"
+    },
+    {
+      "id": 2,
+      "title": "Ford Ranger  2",
+      "content": "Ford Ranger ....",
+      "price": "13000000",
+      "image_url": "/images/gia-xe-ford-vn-2.avif"
+    },
+    {
+      "id": 3,
+      "title": "Ford Ranger 3",
+      "content": "Ford Ranger ....",
+      "price": "25000000",
+      "image_url": "/images/gia-xe-ford-vn-3.avif"
+    },
+    {
+      "id": 4,
+      "title": "Ford Ranger 4",
+      "content": "Ford Ranger ....",
+      "price": "18000000",
+      "image_url": "/images/gia-xe-ford-vn-4.avif"
+    },
+    {
+      "id": 5,
+      "title": "Ford Ranger 5",
+      "content": "Ford Ranger ....",
+      "price": "45000000",
+      "image_url": "/images/gia-xe-ford-vn-5.avif"
+    }
+  ]
+}
