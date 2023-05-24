@@ -28,11 +28,11 @@ const CommonSEO: FC<CommonSEOProps> = ({ title, description, openGraph }) => {
         facebook={{
           appId: "",
         }}
-        twitter={{
-          handle: siteMetadata.twitter,
-          site: siteMetadata.twitter,
-          cardType: "summary_large_image",
-        }}
+        // twitter={{
+        //   handle: siteMetadata.twitter,
+        //   site: siteMetadata.twitter,
+        //   cardType: "summary_large_image",
+        // }}
         robotsProps={{
           maxSnippet: -1,
           maxImagePreview: "none",

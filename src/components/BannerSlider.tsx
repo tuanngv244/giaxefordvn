@@ -31,12 +31,12 @@ export const BannerSlider: FC<BannerSliderProps> = ({ data }) => {
             className="w-full mobile:h-[50vh] tablet:h-[calc(100vh-12rem)] laptop_large:h-[calc(100vh-10rem)] "
             alt={entity?.label}
           />
-          {/* <div className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-[-50%] z-50  ">
+          <div className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-[-50%] z-50  ">
             <h2 className="text-6xl text-white my-[2rem] ">GIÁ XE FORD VN</h2>
             <p className="text-3xl text-white mx-auto max-w-[30rem] text-center">
               Giá xe Ford VN - chất lượng tạo nên thương hiệu.
             </p>
-          </div> */}
+          </div>
           <div className=" content-[''] w-full h-[70%]  absolute bottom-0 left-0 bg-gradient-to-t to-transparent from-black"></div>
         </SplideSlide>
       ))}

@@ -7,8 +7,8 @@ export const siteMetadata = {
   siteLogo: "/static/CA0E67E9-AAD0-4D36-82D8-674C7504DFD1.jpg",
   socialBanner: "/static/CA0E67E9-AAD0-4D36-82D8-674C7504DFD1.jpg",
   email: "miumiu.official.56@gmail.com",
-  github: "https://github.com/",
-  twitter: "https://twitter.com/",
+  youtube: "https://github.com/",
+  instagram: "https://twitter.com/",
   facebook: "https://facebook.com/",
   linkedin: "https://www.linkedin.com/in/",
   analytics: {
