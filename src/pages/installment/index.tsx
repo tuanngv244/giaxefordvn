@@ -77,9 +77,7 @@ export default function Installment(
     [] as Option[]
   );
 
-  const onInstallment = async () => {
-    console.log(watch());
-  };
+  const onInstallment = async () => {};
 
   return (
     <React.Fragment>
