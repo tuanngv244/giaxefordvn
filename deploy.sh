@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Clone your Next.js repository
-git clone https://github.com/tuanngv244
+git clone https://github.com/tuanngv244/giaxefordvn
 
 # Move into the repository directory
 cd giaxefordvn
