@@ -16,7 +16,6 @@ export const siteMetadata = {
   },
   comment: {
     utterancesConfig: {
-      // Visit the link below, and follow the steps in the 'configuration' section
       // https://utteranc.es/
       repo: "",
       issueTerm: "pathname",
