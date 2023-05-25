@@ -33,5 +33,4 @@ jobs:
           password: tuannv5075Aa-
           local-dir: .next/
           remote-dir: public_html
-          password: tuannv5075Aa-
           script: "cd /public_html && npm install && npm run start"
