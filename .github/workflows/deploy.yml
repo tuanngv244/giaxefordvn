@@ -28,15 +28,10 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: giaxefordvn.com
+          host: ftp://giaxefordvn.com
           username: u522678529
           password: tuannv5075Aa-
           local-dir: .next/
           remote-dir: public_html
-
-      - name: Start website on Hostinger
-        uses: appleboy/ssh-action@master
-        with:
-          host: ftp://giaxefordvn.com
-          username: u522678529
           password: tuannv5075Aa-
           script: "cd /public_html && npm install && npm run start"
