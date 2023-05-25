@@ -25,10 +25,13 @@ jobs:
         run: npm run build
 
       - name: Deploy to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: appleboy/scp-action@v0.1.4
+        # SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: giaxefordvn.com
           username: u522678529
           password: tuannv5075Aa-
-          local-dir: .next/
-          remote-dir: public_html
+          # local-dir: .next/
+          # remote-dir: public_html
+          source: ".next"
+          target: "/public_html"
