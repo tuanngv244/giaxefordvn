@@ -36,7 +36,6 @@ export default function Service(
       <Header />
       <SmartFeature />
       <main className="max-w-9/10 mx-auto ">
-        {/*  Services section  */}
         <section className="flex flex-col text-center my-[10rem]">
           <h3 className={textSection}>Hỗ trợ khi mua xe</h3>
           <div className="grid mobile:grid-cols-1  tablet:grid-cols-2 mobile:gap-[2rem] tablet:gap-[5rem] mt-[2rem]">
