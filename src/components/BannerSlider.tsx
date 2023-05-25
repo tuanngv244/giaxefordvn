@@ -36,9 +36,6 @@ export const BannerSlider: FC<BannerSliderProps> = ({ data }) => {
             <p className="text-3xl text-white mx-auto max-w-[30rem] text-center">
               Giá xe Ford VN - chất lượng tạo nên thương hiệu.
             </p>
-            <p className="text-3xl text-white mx-auto max-w-[30rem] text-center">
-              Giá xe Ford VN - chất lượng tạo nên thương hiệu.
-            </p>
           </div>
           <div className=" content-[''] w-full h-[70%]  absolute bottom-0 left-0 bg-gradient-to-t to-transparent from-black"></div>
         </SplideSlide>
