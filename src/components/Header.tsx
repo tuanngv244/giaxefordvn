@@ -6,16 +6,39 @@ import { Device, useDevice } from "@/hooks/useDevice";
 
 type HeaderProps = {};
 
-type NavLinks = Array<{ label: string; path: string }>;
+type NavLinks = Array<{
+  label: string;
+  path: string;
+  subChildren?: Array<{
+    label: string;
+    path: string;
+    img?: string;
+    price?: string;
+  }>;
+}>;
 
 export const navLinks: NavLinks = [
   {
     label: "Sản phẩm",
-    path: "/products",
+    path: "/san-pham",
+    subChildren: [
+      {
+        label: "Ford Raptor",
+        path: "san-pham/ford-raptor",
+        img: "",
+        price: "",
+      },
+      {
+        label: "Ford Explander",
+        path: "san-pham/ford-explander",
+        img: "",
+        price: "",
+      },
+    ],
   },
   {
     label: "Trả góp",
-    path: "/installment",
+    path: "/tra-gop",
   },
   {
     label: "Bảng giá",
@@ -23,11 +46,11 @@ export const navLinks: NavLinks = [
   },
   {
     label: "Dịch vụ",
-    path: "/services",
+    path: "/dich-vu",
   },
   {
     label: "Liên hệ",
-    path: "/contact",
+    path: "/lien-he",
   },
 ];
 

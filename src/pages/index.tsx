@@ -11,36 +11,36 @@ import Link from "next/link";
 import ArrowNextIcon from "public/images/arrow-next-icon.svg";
 import { Icon } from "@/components/Icon";
 import { ServiceCard } from "@/components/ServiceCard";
-import { INew } from "@/models/news";
+import { IBlog, INew } from "@/models/news";
 import { NewCard } from "@/components/NewCard";
 import { BannerSlider } from "@/components/BannerSlider";
 import { SmartFeature } from "@/components/SmartFeature";
 import { Footer } from "@/components/Footer";
 import PageSEO from "@/seo/Seo";
+import { useRestClient } from "@/utils/helpers";
 
 export async function getStaticProps() {
-  const productFilePath = path.join(
-    process.cwd(),
-    "src/pages/api/products.json"
-  );
   const serviceFilePath = path.join(
     process.cwd(),
     "src/pages/api/services.json"
   );
-  const newFilePath = path.join(process.cwd(), "src/pages/api/news.json");
-  const productJsonData = await fsPromises.readFile(productFilePath);
   const serviceJsonData = await fsPromises.readFile(serviceFilePath);
-  const newJsonData = await fsPromises.readFile(newFilePath);
 
-  const productData = JSON.parse(productJsonData as any);
+  const blogs = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/posts`
+  ).then((res) => res.json());
+
+  const products = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API_URL}/product`
+  ).then((res) => res.json());
+
   const serviceData = JSON.parse(serviceJsonData as any);
-  const newData = JSON.parse(newJsonData as any);
 
   return {
     props: {
-      products: productData?.products as IProduct[],
+      products: products, // productData?.products as IProduct[],
       services: serviceData?.services as IService[],
-      news: newData?.news as INew[],
+      blogs: blogs,
     },
   };
 }
@@ -48,7 +48,7 @@ export async function getStaticProps() {
 export default function Home(
   props: InferGetServerSidePropsType<typeof getStaticProps>
 ) {
-  const { products, services, news } = props;
+  const { products, services, blogs } = props;
 
   const textSection = `text-main relative text-uppercase text-5xl my-0  after after:absolute after:top-[50%] after:left-[20%] after:translate-y-[-50%] after:content-[''] after:w-[20rem] after:h-[0.1rem] after:bg-main before:absolute before:top-[50%] before:right-[20%] before:translate-y-[-50%] before:content-[''] before:w-[20rem] before:h-[0.1rem] before:bg-main mobile:after:opacity-0 mobile:before:opacity-0 tablet:after:opacity-100 tablet:before:opacity-100 `;
 
@@ -94,7 +94,7 @@ export default function Home(
           <h3 className={textSection}>Sản phẩm thịnh hành</h3>
           <div className="grid mobile:grid-cols-1 tablet:grid-cols-3 laptop_large:grid-cols-4 gap-[1rem]">
             {products &&
-              products.map((product) => (
+              products.map((product: IProduct) => (
                 <ProductCard key={product.id} data={product} />
               ))}
           </div>
@@ -115,8 +115,8 @@ export default function Home(
         <section className="flex flex-col text-center my-[5rem]">
           <h3 className={textSection}>Tin tức về Ford</h3>
           <div className="grid mobile:grid-cols-1 tablet:grid-cols-3 mobile:gap-[2rem] tablet:gap-[5rem] mt-[2rem]">
-            {news &&
-              news.map((item) => {
+            {blogs &&
+              blogs.map((item: IBlog) => {
                 return <NewCard key={item.id} data={item} />;
               })}
           </div>

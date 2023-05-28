@@ -10,6 +10,15 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "giaxefordvn.online",
+        port: "",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
