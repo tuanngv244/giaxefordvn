@@ -42,7 +42,7 @@ export const navLinks: NavLinks = [
   },
   {
     label: "Bảng giá",
-    path: "/price-list",
+    path: "/bang-gia",
   },
   {
     label: "Dịch vụ",
