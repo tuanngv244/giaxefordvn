@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.2",
     "@splidejs/react-splide": "^0.7.12",
     "@tippyjs/react": "^4.2.6",
     "@types/node": "20.1.3",

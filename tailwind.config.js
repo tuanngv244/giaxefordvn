@@ -22,9 +22,11 @@ module.exports = {
       colors: {
         black: "#000",
         white: "#fff",
+        darkGray: "#484a4a",
         gray: "#4d4d4d",
         lightGray: "#b0b4b8",
         lightGray100: "#cccccc",
+        lightGray10: "#f5f5f5",
         mask: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.9360337885154062) 100%)",
         darkMain: "#172554",
         main: "#1e3a8a",

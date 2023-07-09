@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import BuyFordInstallment from "public/images/mua-xe-tra-gop.jpg";
 import { ProductCard } from "@/components/ProductCard";
 import { IProduct } from "@/models/products";
+import { formatCurrency } from "@/utils/general";
 
 export async function getStaticProps() {
   const products = await fetch(
@@ -215,7 +216,7 @@ export default function PriceList(
       <SmartFeature />
       <main className="max-w-9/10 mx-auto ">
         {/*  Services section  */}
-        <section className="flex flex-col text-center my-[10rem]">
+        <section className="flex flex-col text-center mt-[10rem]  mobile:mb-[2rem] tablet:mb-[5rem]">
           <h3 className={textSection}>Bảng Giá Xe Ford 2023</h3>
           <p className={subTextContent}>
             Bảng giá khuyến nghị từ nhà sản xuất cho toàn bộ các dòng xe ô tô
@@ -228,31 +229,50 @@ export default function PriceList(
           </p>
         </section>
 
-        <section className="">
+        <section className="my-[2rem]">
           {data?.map((entity) => {
             return (
-              <div key={entity.id}>
-                <div className="left">
-                  <h3>{entity?.name}</h3>
+              <div
+                className="flex tablet:flex-row mobile:flex-col  items-start gap-[1.6rem] py-[2rem] border-b-3"
+                key={entity.id}
+              >
+                <div className="left mobile:w-[100%] tablet:w-[50rem]">
+                  <h3 className="mobile:text-3xl tablet:text-5xl text-center text-main500 uppercase my-0">
+                    {entity?.name}
+                  </h3>
                 </div>
-                <div className="right">
-                  <div className="first">
-                    <div className="head">Mẫu xe</div>
-                    <div className="body">
+                <div className="mobile:w-[100%] tablet:w-[calc(100%_-_50rem)] right flex items-start gap-[1.6rem]">
+                  <div className="first w-[50%] ">
+                    <div className="head mobile:min-h-[4.6rem] tablet:min-h-[100%] text-3xl text-black mb-[1rem]">
+                      Mẫu xe
+                    </div>
+                    <div className="body [&>*:nth-child(odd)]:bg-lightGray10 [&>*:nth-child(even)]:bg-main100 ">
                       {entity?.groups?.map((item, idx) => (
-                        <div key={idx}>
-                          <p>{item?.type}</p>
-                          <p>{item?.description}</p>
+                        <div
+                          className="p-[0.5rem] mobile:min-h-[13.4rem]  tablet:min-h-[8.4rem]"
+                          key={idx}
+                        >
+                          <p className="text-xl text-black">{item?.type}</p>
+                          <p className="text-xl text-darkGray italic">
+                            {item?.description}
+                          </p>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <div className="second">
-                    <div className="head">{entity?.name}</div>
-                    <div className="body">
+                  <div className="second w-[50%] ">
+                    <div className="head mobile:min-h-[4.6rem] tablet:min-h-[100%] text-3xl text-black mb-[1rem]">
+                      {entity?.name}
+                    </div>
+                    <div className="body [&>*:nth-child(odd)]:bg-lightGray10 [&>*:nth-child(even)]:bg-main100">
                       {entity?.groups?.map((item, idx) => (
-                        <div key={idx}>
-                          <p>{item?.price}</p>
+                        <div
+                          className="p-[0.5rem] mobile:min-h-[13.4rem]  tablet:min-h-[8.4rem] "
+                          key={idx}
+                        >
+                          <p className="text-xl text-black font-bold">
+                            {formatCurrency(item?.price) + " vnđ"}
+                          </p>
                         </div>
                       ))}
                     </div>
