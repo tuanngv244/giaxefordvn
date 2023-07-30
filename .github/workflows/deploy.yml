@@ -31,6 +31,6 @@ jobs:
           host: ftp://giaxefordvn.com
           username: u522678529
           password: tuannv5075Aa-
-          local-dir: .next/server/pages
+          local-dir: .next/server/pages/
           remote-dir: public_html
           script: "cd /public_html && npm install && npm run start"
