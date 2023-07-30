@@ -13,7 +13,7 @@ npm ci
 npm run build
 
 # Move the built files to the public folder
-mv .next/* public_html/
+mv .next/server/pages* public/
 
 # Deploy the application to Hostinger using FTP
 curl -T public/* -u u522678529:tuannv5075Aa- ftp://giaxefordvn.com/public_html/
