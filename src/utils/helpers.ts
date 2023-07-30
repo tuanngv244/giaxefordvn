@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
-export const fetcher = async (...args: any[]) =>
-  await fetch(...args).then((res) => res.json());
+export const fetcher = async (url: string) =>
+  await fetch(url).then((res) => res.json());
 
 export const useRestClient = (path: string, useRootPath = true) =>
   useSWR(
