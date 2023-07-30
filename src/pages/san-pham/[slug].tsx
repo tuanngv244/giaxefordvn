@@ -50,7 +50,7 @@ const ProductDetail = (props: {
 
   const mediaWP = _links["wp:featuredmedia"] && _links["wp:featuredmedia"][0];
   const getURLmedia = mediaWP?.href;
-  const { data: imgData, error } = useSWR(getURLmedia, fetcher);
+  const { data: imgData } = useSWR(getURLmedia, fetcher);
 
   const textSection = `text-main relative text-uppercase text-5xl my-0  after after:absolute after:top-[50%] after:left-[20%] after:translate-y-[-50%] after:content-[''] after:w-[20rem] after:h-[0.1rem] after:bg-main before:absolute before:top-[50%] before:right-[20%] before:translate-y-[-50%] before:content-[''] before:w-[20rem] before:h-[0.1rem] before:bg-main mobile:after:opacity-0 mobile:before:opacity-0 tablet:after:opacity-100 tablet:before:opacity-100 `;
 
