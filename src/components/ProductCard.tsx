@@ -17,7 +17,7 @@ export const ProductCard: FC<ProductCardProps> = ({ data }) => {
 
   const mediaWP = _links["wp:featuredmedia"] && _links["wp:featuredmedia"][0];
   const getURLmedia = mediaWP?.href;
-  const { data: imgData, error, isLoading } = useSWR(getURLmedia, fetcher);
+  const { data: imgData, error } = useSWR(getURLmedia, fetcher);
 
   const transformPrice = excerpt?.rendered?.replaceAll(/<\/?p>|\n/g, "");
 
