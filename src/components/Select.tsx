@@ -1,12 +1,24 @@
 import { Option } from "@/types/general";
-import { ChangeEvent, FC, FormEvent, FormEventHandler, useState } from "react";
+import {
+  ChangeEvent,
+  FC,
+  FormEvent,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 
 type SelectProps = {
   options: Option[];
+  defaultValue?: Option;
   onSelectData: (data?: Option) => void;
 };
 
-export const Select: FC<SelectProps> = ({ options, onSelectData }) => {
+export const Select: FC<SelectProps> = ({
+  options,
+  onSelectData,
+  defaultValue,
+}) => {
   const [data, setData] = useState<Option | undefined>(options[0]);
   const onSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
@@ -14,6 +26,13 @@ export const Select: FC<SelectProps> = ({ options, onSelectData }) => {
     setData(option);
     onSelectData(option);
   };
+
+  useEffect(() => {
+    if (defaultValue) {
+      setData(defaultValue);
+    }
+  }, [defaultValue]);
+
   return (
     <select
       className="w-full h-[4rem] rounded-4 border border-solid border-lightGray outline-none cursor-pointer "

@@ -3,10 +3,13 @@ import type { AppProps } from "next/app";
 import "tippy.js/dist/tippy.css";
 import ProgressBar from "@badrap/bar-of-progress";
 import { Router } from "next/router";
+import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const progress = new ProgressBar({
   size: 2,
-  color: "main400",
+  color: "#3b82f6",
   className: "bar-of-progress",
   delay: 100,
 });
@@ -23,5 +26,10 @@ Router.events.on("routeChangeComplete", () => progress.finish());
 Router.events.on("routeChangeError", () => progress.finish());
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <React.Fragment>
+      <Component {...pageProps} />
+      <ToastContainer />
+    </React.Fragment>
+  );
 }

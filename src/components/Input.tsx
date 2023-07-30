@@ -3,6 +3,7 @@ import React, {
   DetailedHTMLProps,
   FC,
   InputHTMLAttributes,
+  LegacyRef,
 } from "react";
 
 type InputProps = DetailedHTMLProps<
@@ -11,13 +12,14 @@ type InputProps = DetailedHTMLProps<
 > & {
   error?: boolean;
   messageError?: string;
+  rest?: any;
 };
 
 export const Input: FC<InputProps> = ({
   type,
-  value,
   error,
   messageError,
+  rest,
   ...props
 }) => {
   return (
@@ -25,10 +27,10 @@ export const Input: FC<InputProps> = ({
       <input
         className="w-[100%] h-[3rem] placeholder:text-lightGray100  rounded-4 border border-solid border-lightGray  focus:outline-none"
         type={type ?? "text"}
-        value={value}
         style={{
           textIndent: "1rem",
         }}
+        {...rest}
         {...props}
       />
       {error && (

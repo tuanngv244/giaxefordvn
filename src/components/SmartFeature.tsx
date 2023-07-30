@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+"use client";
+import { FC, useMemo, useState } from "react";
 import { Icon, IconName } from "./Icon";
 import { Modal } from "./Modal";
 import { useForm } from "react-hook-form";
@@ -6,18 +7,17 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import { invalidPhone } from "@/types/validation";
 import Tippy from "@tippyjs/react";
+import { Select } from "./Select";
+import { Option } from "@/types/general";
+import { priceListData } from "@/pages/bang-gia";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type SmartFeatureProps = {};
 
 type ReceivedPriceFormData = {
   phone?: string;
-};
-
-type RegisterDriveFromData = {
-  phone?: string;
-  name: string;
-  email?: string;
-  city?: string;
+  typeCar?: string;
 };
 
 export const SmartFeature: FC<SmartFeatureProps> = () => {
@@ -27,7 +27,13 @@ export const SmartFeature: FC<SmartFeatureProps> = () => {
   }>({ status: false, type: "received_price" });
 
   const receivedPriceForm = useForm<ReceivedPriceFormData>();
-  const registerDrive = useForm<RegisterDriveFromData>();
+
+  const priceListOptions = useMemo(() => {
+    return priceListData.map((price) => ({
+      label: price?.name,
+      value: price?.name,
+    }));
+  }, [JSON.stringify(priceListData)]);
 
   const smarts = [
     {
@@ -47,7 +53,41 @@ export const SmartFeature: FC<SmartFeatureProps> = () => {
     },
   ];
 
-  const onReceivedPrice = async () => {};
+  const onReceivedPrice = async () => {
+    const accountSID = "ACc36de35523aec7b26b82da210bd836a7";
+    const authToken = "8014c22fbeef26e0dbe7e712a2f35ca3";
+    const twilioNumber = "+14705179248";
+    //// ---- use Twilio to send phone data -----/////
+
+    let formData = new URLSearchParams();
+    formData.append("To", "+84977760178");
+    formData.append("From", twilioNumber);
+    formData.append(
+      "Body",
+      `SĐT Khách hàng: ${receivedPriceForm.watch(
+        "phone"
+      )}, Loại xe: ${receivedPriceForm.watch("typeCar")}`
+    );
+
+    const res = await axios.post(
+      `https://api.twilio.com/2010-04-01/Accounts/${accountSID}/Messages.json`,
+      formData,
+      {
+        auth: {
+          username: accountSID,
+          password: authToken,
+        },
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    if (res) {
+      toast("Nhận báo giá thành công!");
+      setModal({ status: false, type: "received_price" });
+      receivedPriceForm.reset();
+    }
+  };
 
   const renderContentModal = () => {
     if (modal.type == "received_price")
@@ -56,16 +96,29 @@ export const SmartFeature: FC<SmartFeatureProps> = () => {
           className="pt-[2rem] flex flex-col items-center "
           onSubmit={receivedPriceForm.handleSubmit(onReceivedPrice)}
         >
+          <Select
+            options={priceListOptions ?? []}
+            defaultValue={priceListOptions[0]}
+            onSelectData={(data?: Option) => {
+              receivedPriceForm.setValue("typeCar", data?.value as string);
+            }}
+          />
           <Input
-            value={receivedPriceForm.watch("phone")}
-            {...receivedPriceForm.register("phone", {
-              required: "Vui lòng nhập số điện thoại để nhận báo giá!",
-              validate: (value) => {
-                if (!invalidPhone(value))
-                  return "Định dạng số điện thoại không hợp lệ!";
-                return undefined;
-              },
-            })}
+            // value={receivedPriceForm.watch("phone")}
+            rest={{
+              ...receivedPriceForm.register("phone", {
+                required: "Vui lòng nhập số điện thoại để nhận báo giá!",
+                validate: (value) => {
+                  if (!invalidPhone(value))
+                    return "Định dạng số điện thoại không hợp lệ!";
+                  return undefined;
+                },
+              }),
+            }}
+            style={{
+              width: "98.5%",
+              marginTop: "10px",
+            }}
             placeholder="Vui lòng nhập số điện thoại..."
             error={Boolean(receivedPriceForm.formState.errors?.phone?.message)}
             messageError={receivedPriceForm.formState.errors?.phone?.message}
