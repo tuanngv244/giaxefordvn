@@ -6,7 +6,7 @@ import { IService } from "@/models/services";
 import fsPromises from "fs/promises";
 import { InferGetServerSidePropsType } from "next";
 import path from "path";
-import React from "react";
+import React, { useState } from "react";
 
 export async function getStaticProps() {
   const serviceFilePath = path.join(
@@ -31,6 +31,8 @@ export default function Service(
 
   const textSection = `text-main relative text-uppercase text-5xl my-0  after after:absolute after:top-[50%] after:left-[20%] after:translate-y-[-50%] after:content-[''] after:w-[20rem] after:h-[0.1rem] after:bg-main before:absolute before:top-[50%] before:right-[20%] before:translate-y-[-50%] before:content-[''] before:w-[20rem] before:h-[0.1rem] before:bg-main mobile:after:opacity-0 mobile:before:opacity-0 tablet:after:opacity-100 tablet:before:opacity-100 `;
 
+  const [is, setIs] = useState(false);
+
   return (
     <React.Fragment>
       <Header />
@@ -45,6 +47,19 @@ export default function Service(
               })}
           </div>
         </section>
+        {is && (
+          <iframe
+            style={{ width: "1000px", height: "1000px" }}
+            src="https://affiliate.ivie.vn"
+          />
+        )}
+        <button
+          onClick={() => {
+            setIs(!is);
+          }}
+        >
+          view
+        </button>
       </main>
 
       <Footer />
