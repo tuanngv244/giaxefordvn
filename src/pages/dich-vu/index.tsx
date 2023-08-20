@@ -50,7 +50,7 @@ export default function Service(
         {is && (
           <iframe
             style={{ width: "1000px", height: "1000px" }}
-            src="https://affiliate.ivie.vn"
+            src="http://affiliate.isofhcare.com.vn/"
           />
         )}
         <button
