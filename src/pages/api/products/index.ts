@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Method } from "@/configs/backend";
+import { Method } from "@/configs";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data =
@@ -7,14 +7,14 @@ type Data =
       data: any[];
       pagination: any;
     }
-  | { name: string };
+  | { message: string };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   if (req.method !== Method.GET)
-    return res.status(404).json({ name: "Not found!" });
+    return res.status(404).json({ message: "Not found!" });
 
   const response = await fetch(
     "https://js-post-api.herokuapp.com/api/posts?_page=1"
