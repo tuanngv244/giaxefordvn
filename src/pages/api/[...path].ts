@@ -22,7 +22,7 @@ export default function handler(
   //don't send cookie to API Server
   req.headers.cookie = "";
   proxy.web(req, res, {
-    target: process.env.NEXT_PUBLIC_BASE_API_SERVER_URL,
+    target: API_SERVER,
     changeOrigin: true,
     selfHandleResponse: false,
   });
