@@ -42,15 +42,15 @@ export default function handler(
           const cookies = new Cookies(req, res, {
             secure: process.env.NODE_ENV !== "development",
           });
-          (cookies as any)
-            .set("access_token", accessToken, {
+          if (cookies) {
+            (cookies as any).set("access_token", accessToken, {
               httpOnly: true,
               sameSite: "lax",
               expires: new Date(expiredAt),
-            })(
-              // -------- //
-              res as NextApiResponse
-            )
+            });
+          }
+          // -------- //
+          (res as NextApiResponse)
             .status(200)
             .json({ message: "Login successfully!" });
         } catch (err) {

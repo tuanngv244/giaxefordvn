@@ -1,3 +1,4 @@
+import restClient from "@/api-client/restClient";
 import EmptyLayout from "@/components/layout/empty";
 import { AppRootProps } from "@/models";
 import "@/styles/globals.css";
@@ -6,6 +7,7 @@ import { Router } from "next/router";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SWRConfig } from "swr";
 import "tippy.js/dist/tippy.css";
 
 const progress = new ProgressBar({
@@ -27,11 +29,16 @@ Router.events.on("routeChangeError", () => progress.finish());
 export default function App({ Component, pageProps }: AppRootProps) {
   const RenderLayout = Component.Layout ?? EmptyLayout;
   return (
-    <React.Fragment>
+    <SWRConfig
+      value={{
+        fetcher: (url) => restClient.get(url),
+        shouldRetryOnError: false,
+      }}
+    >
       <RenderLayout>
         <Component {...pageProps} />
       </RenderLayout>
       <ToastContainer />
-    </React.Fragment>
+    </SWRConfig>
   );
 }
